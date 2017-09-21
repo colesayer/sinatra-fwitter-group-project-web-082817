@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    
+
     erb :index
   end
 
@@ -24,12 +24,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    @user = User.create(params)
-    session[:user_id] = @user.id
     if params[:username] == "" || params[:email] == "" || params[:password] == ""
       redirect to "/signup"
     else
-      redirect to "/tweets/#{@user.id}"
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect to "/tweets"
     end
   end
 

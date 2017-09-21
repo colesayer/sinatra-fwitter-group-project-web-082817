@@ -285,6 +285,7 @@ describe ApplicationController do
         expect(page.body).to include("Delete Tweet")
         expect(page.body).to include(tweet.content)
         expect(page.body).to include("Edit Tweet")
+
       end
     end
 
@@ -405,6 +406,7 @@ describe ApplicationController do
         click_button 'submit'
         visit "tweets/#{tweet2.id}"
         click_button "Delete Tweet"
+        
         expect(page.status_code).to eq(200)
         expect(Tweet.find_by(:content => "look at this tweet")).to be_instance_of(Tweet)
         expect(page.current_path).to include('/tweets')
